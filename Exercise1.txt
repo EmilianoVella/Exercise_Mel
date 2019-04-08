@@ -1,0 +1,22 @@
+int $index = 0;
+for ($index = 0; $index < 3; $index++)
+{
+    string $sphere[] = `polySphere`;
+    move -x ($index *5);
+    string $cubes[] = `polyCube`;
+    move -xy ($index* 5)3;
+    
+    //Creation of shader
+	string $matShader;
+	if($index == 2){
+		$matShader = `shadingNode -asShader blinn`;
+	}
+	$matShader = `shadingNode -asShader lambert`;	
+	
+	string $color = $matShader + ".color";
+	int $indColor[] = {0,0,0};
+	$indColor[$index] = 1;
+	select $cubes[0];
+	
+	hyperShade -a $matShader $cubes[0];
+	setAttr $color -type float3 $indColor[0] $indColor[1] $indColor[2];

@@ -1,0 +1,14 @@
+
+string $WinName = "Exercise5";
+if (`window -q -exists $WinName`)
+{
+    deleteUI $WinName;
+}
+
+window -s 0 $WinName;
+window -e -h 100 -w 500 $WinName;
+       columnLayout -columnAttach "both" 5 -rowSpacing 10 -columnWidth 500 ;
+        string $tx = `textField`;
+        
+        button -l "Enter!" -c "Welcome `textField -q -tx $tx`";
+showWindow;
